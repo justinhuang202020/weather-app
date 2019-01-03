@@ -151,7 +151,10 @@ public class WeatherNewsletter {
 		part1.append("&units=I&");
 		//changes the date time format for the API call
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate localDate = LocalDate.now();
+		//splits the date string to not include time data
+		String date = currData.getJSONArray("data").getJSONObject(0).getString("ob_time").split(" ")[0];
+		
+		LocalDate localDate = LocalDate.parse(date, dtf);
 		int total = 0;
 		//gets data for the last week
 		//free API key only allows for end_date and start_date to be within one date

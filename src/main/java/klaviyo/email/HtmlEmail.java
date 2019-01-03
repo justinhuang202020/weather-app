@@ -16,7 +16,7 @@ public class HtmlEmail implements Email{
 	//please fill this with your own email
 	private final String from = "*****";
 	//please fill this with your own email password
-	private final String password = "****";
+	private final String password = "*****";
 	private String subject;
 	private String message;
 	private List<String> recipients;
