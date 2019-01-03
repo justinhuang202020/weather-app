@@ -1,0 +1,49 @@
+Running the program:
+Before compiling, go to the java file HtmlEmail.java (which is in the relative directory /src/main/java/klaviyo/email).
+In line 17 and 19, please fill in your gmail email and password respectively. This is the only way this program will be able to send out an email.
+Once you do that, run the command mvn package in the terminal. After that, running ./run will start the program.
+The program will be on the url "localhost:4567/signup"
+Design: 
+This program uses Java as the backend, Spark as the API to communicate between the backend and frontend, and HTML/JavaScript as the frontend.
+
+Classes:
+
+WeatherDatabase class:
+This class creates the file (if needed) weatherapp.db and creates the tables (if the file was just created).
+I used SQLITE3 as a my database
+There are two schemas. 
+The first is top_100_cities table. There are three columns: The id (the primary key), the city, and the state.
+If this table has not been created yet, the table will be created, and the top 100 cities will be inserted into the table using the file top_100_cities.txt.
+This file contains 100 lines. Each line contains the city and state of one of the top 100 cities in America. I complied this list from Wikipedia.
+The second schema is the users table. There are three columns: The email (the primary key), the city, and the state.
+Now the city and the state are not foreign keys. I do this because theoretically if the list changes and I update the top_100_cities table, then the city and the state being foreign keys in the users tables will be deleted. I believe these records should be kept. However, when a user is created, the city and the state have to exist in the top_100_cities table currently to be valid. 
+Other methods check if the user exists, a city exists, adding users, and deleting users.
+
+HtmlEmail class:
+This class implements my own Email interface. The interface has methods to get the subject line, add a subject line, add the message, get the message, add recipients, get recipients, and sending an email.
+The HtmlEmail class tailors the send method to sending html-based emails. 
+
+WeatherNewsletter class:
+This class get the weather data from weatherbit.io based on the city and state variables fed to the class.
+This class also handles average weather calculations to determine the subject line. My decision is to get the average weather of the previous week since ususally the previous week isn't too far off from the current weather. 
+The type of weather (precipitating, raining, etc) is handled by getting the weather codes which is some three-digit integer. 
+The class also has a send method that creates an instance of the HtmlEmail class and sends the email.
+
+The flow of the project is as follows:
+The programs starts in Main.java. In Main.java, a call to the WeatherDatabase class is instantiated immediately. This renders the frontend page with a signup page. An email input, a location input, and a submit button show up. The page (via JavaScript) automatically calls a post request (/cityInfo) to get the top 100 cities and put them in a datalist tag. The datalist tag has autocorrect functionality embedded and will execute when the user types in the box. Once the form is submitted, the location is split into two parts, the city and the state. An initial check is done in the front end. If the split string is of size two (i.e. Boston, MA would be split into Boston and MA), then the post request is called.
+The values that are sent are the email, the city, and the state.
+While the message is sent, a "please wait" message will appear to prevent someone from clicking on the button twice.
+The backend in Main.java get the call. It then first checks if the email is already in the database. Then it checks if the city and state are valid. If all is set, it then creates a WeatherNewsletter and tries to send the email. If along any of these paths a method returns false (basically any of the variables sent over are invalid), the boolean "success" is set to false. If not, it's kept to true. 
+If there are errors on the way, the type of error message is recorded. 
+After the method is done, a JSON string is sent back with two variables. the first is whether the signup was successful. The second is (if applicable) the error message. If the signup was successful, the confirmation message would appear. Else, the corresponding error message would appear.
+The layout for the frontend was based on various w3 school tutorials.
+
+Security: 
+All my SQL queries and updates were done using prepared statements. Therefore, no SQL injections can happen.
+XSS injections are also unlikely simply because none of the values submitted will come back to the front end to be stored (like a comment section). One it reaches to the front back, it becomes a string, and does not do anything harmful. And since none of it comes back to the front end, it's hard to exploit the program this way. 
+
+Optimizations:
+Some basic optimizations I made were using StringBuilder in the backend which reduces runtime. Other things to probably consider are that the calls to weatherbit.io seem to be relatively slow. This might be the fact that my key for the API is the free key (and can only make 1000 calls a day) so if this goes viral updating the key may be helpful. Furthermore, sending an email seems to take time as well (a few seconds) so if there was a way to trace the source of bottlenecking then maybe we could reduce the runtime on that.
+
+Testing:
+I made some basic tests in (src/test/java/klaviyo). Thsi was done to see if database and API functionalities were working. Some are commented out to make sure the program compiles. This is due to my API key for the weather data only being able to make 1000 calls a day and some of these tests are making mulitple calls.

@@ -1,0 +1,29 @@
+input[type="number"] {
+  width: 3em;
+}
+body {
+	background-image: url('https://images4.alphacoders.com/272/272584.jpg');
+	background-size: 100%;
+}
+div{
+	margin: auto;
+}
+h1{
+	text-align: center;
+}
+h2{
+	text-align: center;
+}
+p{
+	text-align: center;
+}
+#message {
+	background-color: white;
+}
+#content {
+	width: 50%;
+	background-color: white;
+}
+textarea {
+	width: 75%;
+}

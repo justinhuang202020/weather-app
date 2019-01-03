@@ -1,0 +1,58 @@
+input[type="number"] {
+  width: 3em;
+}
+#background {
+	background-image: url('https://s-media-cache-ak0.pinimg.com/originals/42/b5/8f/42b58f5b26a9624b5760bc5b755b13c0.jpg');
+	background-size: cover;
+	background-position: fixed;
+}
+ul {
+	list-style: none;
+}
+#white {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+div{
+	margin: auto;
+}
+ul {
+	position: relative;
+	top: 0px;
+}
+li {
+	color: blue;
+    border: solid blue 3px;
+    background-color: white;
+    border-radius:20px;
+    box-shadow: inset 5px 5px 20px grey, inset -5px -5px 20px grey;
+}
+h1{
+	text-align: center;
+}
+h2{
+	text-align: center;
+}
+h3{
+	text-align: center;
+}
+p{
+	text-align: center;
+}
+#message {
+	background-color: white;
+}
+#content {
+	width: 60%;
+	
+}
+textarea {
+	width: 75%;
+}
+a {
+	color: black;
+	opacity: 1.0;
+}
+
+a:hover {
+	opacity: 0.5;
+}
