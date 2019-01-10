@@ -1,4 +1,4 @@
-package klaviyo.driver;
+package driver;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,12 +11,10 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 
-
+import database.WeatherDatabase;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import klaviyo.database.WeatherDatabase;
-import klaviyo.weather.WeatherNewsletter;
 import spark.ModelAndView;
 import spark.QueryParamsMap;
 import spark.Request;
@@ -25,6 +23,7 @@ import spark.Route;
 import spark.Spark;
 import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
+import weather.WeatherNewsletter;
 
 /**
  * The Main class of our project. This is where execution begins.

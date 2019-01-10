@@ -1,4 +1,4 @@
-package klaviyo.database;
+package database;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -5,4 +5,4 @@
  * @author total
  *
  */
-package klaviyo.email;
+package database;

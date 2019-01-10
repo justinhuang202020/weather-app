@@ -1,8 +1,10 @@
-package klaviyo.database;
+package database;
 
 import java.nio.file.Paths;
 
 import org.junit.Test;
+
+import database.WeatherDatabase;
 
 public class DatabaseTest {
 /**

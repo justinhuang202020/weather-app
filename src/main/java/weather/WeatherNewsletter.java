@@ -1,4 +1,4 @@
-package klaviyo.weather;
+package weather;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import klaviyo.email.HtmlEmail;
+import email.HtmlEmail;
 
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;

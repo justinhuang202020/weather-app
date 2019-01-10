@@ -1,4 +1,4 @@
-package klaviyo.weather;
+package weather;
 
 
 import java.io.BufferedReader;

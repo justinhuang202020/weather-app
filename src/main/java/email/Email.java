@@ -1,4 +1,4 @@
-package klaviyo.email;
+package email;
 
 import java.util.List;
 
